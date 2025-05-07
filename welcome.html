@@ -61,9 +61,9 @@
 aptrinsic("identify",
   {
   //User Fields
-    "id": "unique-user-id", // Required for logged in app users
-    "email": "userEmail@address.com",
-    "firstName": "John",
+    "id": loggedInUser.id, // Required for logged in app users
+    "email": loggedInUser.email,
+    "firstName": loggedInUser.name,
     "lastName": "Smith",
     "signUpDate": 1522697426479, //unix time in ms
     "plan" : "gold", //Custom attributes - please create those custom attributes in Aptrinsic via Account Settings to be tracked.
