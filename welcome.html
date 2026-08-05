@@ -93,22 +93,23 @@ aptrinsic("identify",
     </script>
 
 
-   <div id="px-attribute-module">
+<div id="px-event-module">
   <input 
-    id="px-value-input" 
+    id="px-decimal-input" 
     type="number" 
     step="0.01" 
-    placeholder="Enter decimal value (e.g. 87.5)" 
+    min="0"
+    placeholder="Enter decimal value (e.g. 0.59)" 
   />
-  <button onclick="submitAvepointtest()">Submit</button>
+  <button onclick="submitPxEvent()">Submit</button>
 
-  <p id="px-status"></p>
+  <p id="px-event-status"></p>
 </div>
 
 <script>
-function submitAvepointtest() {
-  const value = parseFloat(document.getElementById('px-value-input').value);
-  const status = document.getElementById('px-status');
+function submitPxEvent() {
+  const value = parseFloat(document.getElementById('px-decimal-input').value);
+  const status = document.getElementById('px-event-status');
 
   if (isNaN(value)) {
     status.style.color = 'red';
@@ -116,14 +117,13 @@ function submitAvepointtest() {
     return;
   }
 
-  aptrinsic('identify', {}, {
-    customAttributes: {
-      avepointtest: value
-    }
+  // Fires a custom event with the decimal number attribute
+  aptrinsic('track', 'avepointtest', {
+    avepointtest: value
   });
 
   status.style.color = 'green';
-  status.textContent = 'avepointtest set to ' + value;
+  status.textContent = '✓ Event "avepointtest" fired with value: ' + value;
 }
 </script>
 </body>
